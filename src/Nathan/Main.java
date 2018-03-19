@@ -1,4 +1,4 @@
-package sample;
+package Nathan;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -16,7 +16,7 @@ public class Main extends Application {
         primaryStage.setTitle("Character");
         Rectangle character = new Rectangle(30,30,200,200);
         character.setFill(new Color(1,0.5,0.5,1));
-        Image skin = new Image("sample/Frogger_Icon.png");
+        Image skin = new Image("Nathan/Frogger_Icon.png");
         ImageView viewer = new ImageView(skin);
         viewer.setFitHeight(200);
         viewer.setFitWidth(200);

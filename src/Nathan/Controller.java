@@ -1,4 +1,4 @@
-package sample;
+package Nathan;
 
 public class Controller {
 }
