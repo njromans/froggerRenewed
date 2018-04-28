@@ -26,11 +26,11 @@ public class mainMenu extends Application {
         froggerRenewed.setScene(new Scene(root, 400, 400));
 
         //Generate buttons with labels
-        Image button1 = new Image("file:froggerButtonStart.png");
-        Image button2 = new Image("file:froggerButtonQuit.png");
-        Image button3 = new Image("file:froggerButtonHelp.png");
-        Image button4 = new Image("file:froggerButtonNext.png");
-        Image button5 = new Image("file:froggerButtonBack.png");
+        Image button1 = new Image("Nathan/froggerButtonStart.png");
+        Image button2 = new Image("Nathan/froggerButtonQuit.png");
+        Image button3 = new Image("Nathan/froggerButtonHelp.png");
+        Image button4 = new Image("Nathan/froggerButtonNext.png");
+        Image button5 = new Image("Nathan/froggerButtonBack.png");
         //Start
         startButton = new Button();
         startButton.setGraphic(new ImageView(button1));
@@ -94,7 +94,7 @@ public class mainMenu extends Application {
         Canvas mainMenuScreen = new Canvas(800, 800);
 
         GraphicsContext menuBG = mainMenuScreen.getGraphicsContext2D();
-        Image menu = new Image("file:MainMenuBG.png", 800, 800, true, true);
+        Image menu = new Image("Nathan/MainMenuBG.png", 800, 800, true, true);
 
         menuBG.drawImage(menu, 0, 0);
 
@@ -111,7 +111,7 @@ public class mainMenu extends Application {
         Canvas rulesScreen = new Canvas(800, 800);
 
         GraphicsContext helpScreenBG1 = rulesScreen.getGraphicsContext2D();
-        Image rule = new Image("file:Rules.png", 800, 800, true, true);
+        Image rule = new Image("Nathan/Rules.png", 800, 800, true, true);
 
         helpScreenBG1.drawImage(rule, 0, 0);
 
@@ -125,7 +125,7 @@ public class mainMenu extends Application {
         Canvas controlsScreen = new Canvas(800, 800);
 
         GraphicsContext helpScreenBG2 = controlsScreen.getGraphicsContext2D();
-        Image control = new Image("file:Controls.png", 800, 800, true, true);
+        Image control = new Image("Nathan/Controls.png", 800, 800, true, true);
 
         helpScreenBG2.drawImage(control, 0, 0);
 
