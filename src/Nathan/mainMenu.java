@@ -14,25 +14,23 @@ import javafx.scene.image.ImageView;
 
 public class mainMenu extends Application {
 
+    Stage froggerRenewed;
     Scene mainMenu, rules, controls, gameLevel;
-    Button startButton;
-    Button helpButton;
-    Button quitButton;
-    Button nextButton;
-    Button backButton;
+    Button startButton, helpButton, quitButton, nextButton, backButton;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        froggerRenewed = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Frogger Renewed");
-        primaryStage.setScene(new Scene(root, 400, 400));
+        froggerRenewed.setTitle("Frogger Renewed");
+        froggerRenewed.setScene(new Scene(root, 400, 400));
 
         //Generate buttons with labels
-        Image button1 = new Image("file:///C:/Users/User/IdeaProjects/froggerGameMenu/src/froggerButtonStart.png");
-        Image button2 = new Image("file:///C:/Users/User/IdeaProjects/froggerGameMenu/src/froggerButtonQuit.png");
-        Image button3 = new Image("file:///C:/Users/User/IdeaProjects/froggerGameMenu/src/froggerButtonHelp.png");
-        Image button4 = new Image("file:///C:/Users/User/IdeaProjects/froggerGameMenu/src/froggerButtonNext.png");
-        Image button5 = new Image("file:///C:/Users/User/IdeaProjects/froggerGameMenu/src/froggerButtonBack.png");
+        Image button1 = new Image("file:froggerButtonStart.png");
+        Image button2 = new Image("file:froggerButtonQuit.png");
+        Image button3 = new Image("file:froggerButtonHelp.png");
+        Image button4 = new Image("file:froggerButtonNext.png");
+        Image button5 = new Image("file:froggerButtonBack.png");
         //Start
         startButton = new Button();
         startButton.setGraphic(new ImageView(button1));
@@ -64,30 +62,31 @@ public class mainMenu extends Application {
         startButton.setOnAction(pressEvent -> {
             System.out.println("Starting Frogger");
             System.out.println("Loading the level.");
-            //primaryStage.setScene(gameLevel);
+            //froggerRenewed.setScene(gameLevel);
         });
 
         quitButton.setOnAction(pressEvent -> {
             System.out.println("Quitting Frogger");
             System.out.println("Closing the application.");
+            closeFrogger();
         });
 
         helpButton.setOnAction(pressEvent -> {
             System.out.println("Frogger Help");
             System.out.println("Here are the rules");
-            primaryStage.setScene(rules);
+            froggerRenewed.setScene(rules);
         });
 
         nextButton.setOnAction(pressEvent -> {
             System.out.println("Frogger Help");
             System.out.println("Here are the controls");
-            primaryStage.setScene(controls);
+            froggerRenewed.setScene(controls);
         });
 
         backButton.setOnAction(pressEvent -> {
             System.out.println("Frogger Main Menu");
             System.out.println("Here is the Main Menu");
-            primaryStage.setScene(mainMenu);
+            froggerRenewed.setScene(mainMenu);
         });
 
         //Draw Main Menu Background
@@ -95,7 +94,7 @@ public class mainMenu extends Application {
         Canvas mainMenuScreen = new Canvas(800, 800);
 
         GraphicsContext menuBG = mainMenuScreen.getGraphicsContext2D();
-        Image menu = new Image("file:///C:/Users/User/IdeaProjects/froggerGameMenu/src/MainMenuBG.png", 800, 800, true, true);
+        Image menu = new Image("file:MainMenuBG.png", 800, 800, true, true);
 
         menuBG.drawImage(menu, 0, 0);
 
@@ -112,7 +111,7 @@ public class mainMenu extends Application {
         Canvas rulesScreen = new Canvas(800, 800);
 
         GraphicsContext helpScreenBG1 = rulesScreen.getGraphicsContext2D();
-        Image rule = new Image("file:///C:/Users/User/IdeaProjects/froggerGameMenu/src/Rules.png", 800, 800, true, true);
+        Image rule = new Image("file:Rules.png", 800, 800, true, true);
 
         helpScreenBG1.drawImage(rule, 0, 0);
 
@@ -126,7 +125,7 @@ public class mainMenu extends Application {
         Canvas controlsScreen = new Canvas(800, 800);
 
         GraphicsContext helpScreenBG2 = controlsScreen.getGraphicsContext2D();
-        Image control = new Image("file:///C:/Users/User/IdeaProjects/froggerGameMenu/src/Controls.png", 800, 800, true, true);
+        Image control = new Image("file:Controls.png", 800, 800, true, true);
 
         helpScreenBG2.drawImage(control, 0, 0);
 
@@ -136,12 +135,17 @@ public class mainMenu extends Application {
         controls = new Scene(helpScreen2, 800, 800);
 
         //Set primary stage to main menu
-        primaryStage.setScene(mainMenu);
-        primaryStage.show();
+        froggerRenewed.setScene(mainMenu);
+        froggerRenewed.show();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
+        private void closeFrogger()
+        {
+            System.out.println("File saved!");
+            froggerRenewed.close();
+        }
 }
