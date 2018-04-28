@@ -15,8 +15,8 @@ import javafx.scene.image.ImageView;
 public class mainMenu extends Application {
 
     Stage froggerRenewed;
-    Scene mainMenu, rules, controls, gameLevel;
-    Button startButton, helpButton, quitButton, nextButton, backButton;
+    Scene mainMenu, rules, controls, gameLevel, win, lose;
+    Button startButton, helpButton, quitButton, quitButton2, nextButton, backButton;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -41,6 +41,11 @@ public class mainMenu extends Application {
         quitButton.setGraphic(new ImageView(button2));
         quitButton.setLayoutX(275);
         quitButton.setLayoutY(400);
+        //Quit2 for win/lose screen
+        quitButton2 = new Button();
+        quitButton2.setGraphic(new ImageView(button2));
+        quitButton2.setLayoutX(550);
+        quitButton2.setLayoutY(725);
         //Help
         helpButton = new Button();
         helpButton.setGraphic(new ImageView(button3));
@@ -62,10 +67,17 @@ public class mainMenu extends Application {
         startButton.setOnAction(pressEvent -> {
             System.out.println("Starting Frogger");
             System.out.println("Loading the level.");
-            //froggerRenewed.setScene(gameLevel);
+            //froggerRenewed.setScene(gameLevel.LevelTwoBackground.levelTwoBackground);
+            froggerRenewed.setScene(win);
         });
 
         quitButton.setOnAction(pressEvent -> {
+            System.out.println("Quitting Frogger");
+            System.out.println("Closing the application.");
+            froggerRenewed.close();
+        });
+
+        quitButton2.setOnAction(pressEvent -> {
             System.out.println("Quitting Frogger");
             System.out.println("Closing the application.");
             froggerRenewed.close();
@@ -133,6 +145,34 @@ public class mainMenu extends Application {
         helpScreen2.getChildren().add(backButton);
 
         controls = new Scene(helpScreen2, 800, 800);
+
+        //Layout win scene
+        Group winScreen = new Group();
+        Canvas winScreenMessage = new Canvas(800, 800);
+
+        GraphicsContext winScreenDisplay = winScreenMessage.getGraphicsContext2D();
+        Image winMessage = new Image("Nathan/youwin.png", 800, 800, true, true);
+
+        winScreenDisplay.drawImage(winMessage, 0, 0);
+
+        winScreen.getChildren().addAll(winScreenMessage);
+        winScreen.getChildren().add(quitButton2);
+
+        win = new Scene(winScreen, 800, 800);
+
+        //Layout lose scene
+        Group loseScreen = new Group();
+        Canvas loseScreenMessage = new Canvas(800, 800);
+
+        GraphicsContext loseScreenDisplay = loseScreenMessage.getGraphicsContext2D();
+        Image loseMessage = new Image("Nathan/GameOver.png", 800, 800, true, true);
+
+        loseScreenDisplay.drawImage(loseMessage, 0, 0);
+
+        loseScreen.getChildren().addAll(loseScreenMessage);
+        loseScreen.getChildren().add(quitButton2);
+
+        lose = new Scene(loseScreen, 800, 800);
 
         //Set primary stage to main menu
         froggerRenewed.setScene(mainMenu);
