@@ -68,7 +68,7 @@ public class mainMenu extends Application {
         quitButton.setOnAction(pressEvent -> {
             System.out.println("Quitting Frogger");
             System.out.println("Closing the application.");
-            closeFrogger();
+            froggerRenewed.close();
         });
 
         helpButton.setOnAction(pressEvent -> {
@@ -142,10 +142,4 @@ public class mainMenu extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-        private void closeFrogger()
-        {
-            System.out.println("File saved!");
-            froggerRenewed.close();
-        }
 }
