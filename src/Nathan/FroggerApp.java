@@ -19,9 +19,7 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Almas Baimagambetov (AlmasB) (almaslvl@gmail.com)
- */
+
 public class FroggerApp extends Application {
 
     private AnimationTimer timer;
