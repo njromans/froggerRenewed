@@ -1,4 +1,4 @@
-package LevelTwoBackground;
+package Nathan;
 
 import javafx.scene.image.Image;
 
@@ -11,18 +11,18 @@ public class Perks {
 
     public static Image loadPerk() {
 
-        Image pinkFly = new Image("file:PinkFly.png", 100, 100, false, false);
-        Image fly = new Image("file:Fly.png", 100, 100, false, false);
-        Image giantLadyBug = new Image("file:GiantLadyBug.png", 100, 100, false, false);
-        Image littleBee = new Image("file:LittleBee.png", 100, 100, false, false);
-        Image powerDrink = new Image("file:PowerDrinkPowerUP.png", 100, 100, false, false);
-        Image protienBar = new Image("file:ProtienBarPowerUp.png", 100, 100, false, false);
-        Image candyOne = new Image("file:CandyPowerDown.png", 100, 100, false, false);
-        Image candyTwo = new Image("file:CandyPowerDown2.png", 100, 100, false, false);
-        Image redBeetle = new Image("file:RedBeetle.png", 100, 100, false, false);
-        Image sodaBottle = new Image("file:SodaBottlePowerDown.png", 100, 100, false, false);
-        Image sodaCan = new Image("file:SodaPowerDown.png", 100, 100, false, false);
-        Image yellowBeetle = new Image("file:YellowBeetle.png", 100, 100, false, false);
+        Image pinkFly = new Image("Nathan/Images/PinkFly.png", 100, 100, false, false);
+        Image fly = new Image("Nathan/Images/Fly.png", 100, 100, false, false);
+        Image giantLadyBug = new Image("Nathan/Images/GiantLadyBug.png", 100, 100, false, false);
+        Image littleBee = new Image("Nathan/Images/LittleBee.png", 100, 100, false, false);
+        Image powerDrink = new Image("Nathan/Images/PowerDrinkPowerUP.png", 100, 100, false, false);
+        Image protienBar = new Image("Nathan/Images/ProtienBarPowerUp.png", 100, 100, false, false);
+        Image candyOne = new Image("Nathan/Images/CandyPowerDown.png", 100, 100, false, false);
+        Image candyTwo = new Image("Nathan/Images/CandyPowerDown2.png", 100, 100, false, false);
+        Image redBeetle = new Image("Nathan/Images/RedBeetle.png", 100, 100, false, false);
+        Image sodaBottle = new Image("Nathan/Images/SodaBottlePowerDown.png", 100, 100, false, false);
+        Image sodaCan = new Image("Nathan/Images/SodaPowerDown.png", 100, 100, false, false);
+        Image yellowBeetle = new Image("Nathan/Images/YellowBeetle.png", 100, 100, false, false);
 
         pickPerk randomImage = pickPerk.getRandomPerk();
         final int DELAY = 5000; //5 second delay for timer
