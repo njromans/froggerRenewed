@@ -68,7 +68,9 @@ public class mainMenu extends Application {
             System.out.println("Starting Frogger");
             System.out.println("Loading the level.");
             //froggerRenewed.setScene(gameLevel.LevelTwoBackground.levelTwoBackground);
+            gameOver = new Stage();
             gameOver.setScene(win);
+            gameOver.show();
         });
 
         quitButton.setOnAction(pressEvent -> {
