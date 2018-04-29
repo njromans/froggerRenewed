@@ -29,17 +29,17 @@ public class TopPlayerInfo {
 
 
         topInfoBackground.setFill(Color.DARKGRAY);
-        topInfoBackground.fillRect(0,0, 1275, 125);
+        topInfoBackground.fillRect(0,0, 325, 50);
 
         topInfo.setFill( Color.BLACK );
         topInfo.setLineWidth(2);
-        Font theFont = Font.font("Times New Roman", FontWeight.BOLD, 48 );
+        Font theFont = Font.font("Times New Roman", FontWeight.BOLD, 20 );
         topInfo.setFont(theFont);
 
         startTime();
 
-        topInfo.fillText("Score: " + score, 550, 50); // Coordinates to draw the player's score on the canvas
-        topInfo.fillText("Time: " + timerText, 1050, 50); // Coordinates to draw the time left on the canvas
+        topInfo.fillText("Score: " + score, 100, 50); // Coordinates to draw the player's score on the canvas
+        topInfo.fillText("Time: " + timerText, 200, 50); // Coordinates to draw the time left on the canvas
 
         drawLives(topInfo);
 
@@ -87,20 +87,20 @@ public class TopPlayerInfo {
     public static void drawLives(GraphicsContext drawLivesgc) {
         int playerLives = 3; // Number of lives a player starts off with in the game
 
-        Image playerLife1 = new Image("Nathan/Images/frog.png", 100,  75, false, false); // Variable to contain image of player life
-        Image playerLife2 = new Image("Nathan/Images/frog.png", 100, 75, false, false); // Variable to contain image of player life
-        Image playerLife3 = new Image("Nathan/Images/frog.png", 110, 75, false,false); // Variable to contain image of player life
+        Image playerLife1 = new Image("Nathan/Images/frog.png", 40,  40, true, true); // Variable to contain image of player life
+        Image playerLife2 = new Image("Nathan/Images/frog.png", 40, 40, true, true); // Variable to contain image of player life
+        Image playerLife3 = new Image("Nathan/Images/frog.png", 40, 40, true,true); // Variable to contain image of player life
 
         // Cases to determine how many lives a player has left in the game
         switch (playerLives) {
             case 3: // Player has 3 lives
                 drawLivesgc.drawImage(playerLife1, 10, 5); // Coordinates on canvas to draw player life
-                drawLivesgc.drawImage(playerLife2, 110, 5); // Coordinates on canvas to draw player life
-                drawLivesgc.drawImage(playerLife3, 210, 5); // Coordinates on canvas to draw player life
+                drawLivesgc.drawImage(playerLife2, 50, 5); // Coordinates on canvas to draw player life
+                drawLivesgc.drawImage(playerLife3, 90, 5); // Coordinates on canvas to draw player life
                 break;
             case 2: // Player has 2 lives
                 drawLivesgc.drawImage(playerLife1, 10, 5); // Coordinates on canvas to draw player life
-                drawLivesgc.drawImage(playerLife2, 110, 5); // Coordinates on canvas to draw player life
+                drawLivesgc.drawImage(playerLife2, 50, 5); // Coordinates on canvas to draw player life
                 break;
             case 1: // Player has 1 life
                 drawLivesgc.drawImage(playerLife1, 10, 5); // Coordinates on canvas to draw player life
