@@ -210,7 +210,7 @@ public class mainMenu extends Application {
 
         levelScreen.getChildren().addAll(levelScreenDisplay);
 
-        gameLevel = new Scene(levelScreen, 800, 800);
+        gameLevel = new Scene(levelScreen, 300, 800);
 
         //add Perks
         //find random Y start value for perk ((0.0 to 1.0) * 5000 +375)

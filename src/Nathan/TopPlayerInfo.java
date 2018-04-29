@@ -87,9 +87,9 @@ public class TopPlayerInfo {
     public static void drawLives(GraphicsContext drawLivesgc) {
         int playerLives = 3; // Number of lives a player starts off with in the game
 
-        Image playerLife1 = new Image("file:frog.png", 100,  75, false, false); // Variable to contain image of player life
-        Image playerLife2 = new Image("file:frog.png", 100, 75, false, false); // Variable to contain image of player life
-        Image playerLife3 = new Image("file:frog.png", 110, 75, false,false); // Variable to contain image of player life
+        Image playerLife1 = new Image("Nathan/Images/frog.png", 100,  75, false, false); // Variable to contain image of player life
+        Image playerLife2 = new Image("Nathan/Images/frog.png", 100, 75, false, false); // Variable to contain image of player life
+        Image playerLife3 = new Image("Nathan/Images/frog.png", 110, 75, false,false); // Variable to contain image of player life
 
         // Cases to determine how many lives a player has left in the game
         switch (playerLives) {
@@ -111,7 +111,6 @@ public class TopPlayerInfo {
 
 
     }
-
 
     public static int score; // Variable to keep track of the player's score
     private int negativeScore = -50; // Integer value that deducts from the player's score if they hit a negative perk
