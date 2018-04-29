@@ -1,5 +1,6 @@
 package Nathan;
 
+import LevelTwoBackground.LevelTwoBackground;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,8 +15,8 @@ import javafx.scene.image.ImageView;
 
 public class mainMenu extends Application {
 
-    Stage froggerRenewed, gameOver;
-    Scene mainMenu, rules, controls, gameLevel, win, lose;
+    Stage froggerRenewed, gameLevel;
+    Scene mainMenu, rules, controls, level, win, lose;
     Button startButton, helpButton, quitButton, nextButton, backButton; //quitButton2
 
     @Override
@@ -68,9 +69,11 @@ public class mainMenu extends Application {
             System.out.println("Starting Frogger");
             System.out.println("Loading the level.");
             //froggerRenewed.setScene(gameLevel.LevelTwoBackground.levelTwoBackground);
-            gameOver = new Stage();
-            gameOver.setScene(win);
-            gameOver.show();
+            //gameLevel = new Stage();
+            new Thread(() -> Application.launch(LevelTwoBackground.class)).start();
+            //level =
+            //gameLevel.setScene(level);
+            //gameLevel.show();
         });
 
         quitButton.setOnAction(pressEvent -> {
@@ -161,8 +164,7 @@ public class mainMenu extends Application {
         //winScreen.getChildren().add(quitButton2);
 
         win = new Scene(winScreen, 800, 800);
-        //gameOver.setScene(win);
-
+        gameLevel.setScene(win);
 
         //Layout lose scene
         Group loseScreen = new Group();
@@ -177,7 +179,7 @@ public class mainMenu extends Application {
         //loseScreen.getChildren().add(quitButton2);
 
         lose = new Scene(loseScreen, 800, 800);
-        //gameOver.setScene(lose);
+        gameLevel.setScene(lose);
 
         //Set primary stage to main menu
         froggerRenewed.setScene(mainMenu);
@@ -186,5 +188,7 @@ public class mainMenu extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        new Thread(() -> Application.launch(LevelTwoBackground.class)).start();
+
     }
 }

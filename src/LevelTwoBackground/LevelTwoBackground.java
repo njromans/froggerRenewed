@@ -33,7 +33,6 @@ public class LevelTwoBackground extends Application {
      private Stage window;
      //private Image perk = Perks.loadPerk();
 
-
     @Override
     public void start(Stage primaryStage) {
         window = primaryStage; // rename for clarity
@@ -87,8 +86,9 @@ public class LevelTwoBackground extends Application {
         window.setMaxHeight(1275);
         window.setMaxWidth(1275);
         window.setScene(new Scene(levelTwoBackground));
+        //levelTwo = new Scene(levelTwoBackground, 1275, 1275);
         window.setTitle("Level 2 - Traffic Trouble");
-        window.show(); 
+        window.show();
     }
     private void drawBackground(GraphicsContext levelTwoBackgroundGc ){
         
