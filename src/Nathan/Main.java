@@ -8,6 +8,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+
+/**
+ * Main game class to run
+ * source files
+ * @author everyone
+ */
 public class Main extends Application {
 
     @Override
@@ -25,11 +31,16 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 500, 500));
         primaryStage.show();
     }
-
+/**
+ * called on update of frame
+ */
     public static void update(){
 
     }
-
+/**
+ * launch arguments
+ * @param args 
+ */
     public static void main(String[] args) {
         launch(args);
     }
