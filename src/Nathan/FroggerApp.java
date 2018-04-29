@@ -7,9 +7,11 @@ import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -27,6 +29,7 @@ public class FroggerApp extends Application {
     private Pane root;
 
     private List<Node> cars = new ArrayList<>();
+    private List<Node> boats = new ArrayList<>();
     private Node frog;
 
     private Parent createContent() {
@@ -50,6 +53,8 @@ public class FroggerApp extends Application {
 
     private Node initFrog() {
         Rectangle rect = new Rectangle(38, 38, Color.GREEN);
+        Image Frog = new Image("file:Frog.png", 250, 250, false, false);
+        rect.setFill(new ImagePattern(Frog));
         rect.setTranslateY(600 - 39);
 
         return rect;
@@ -57,6 +62,18 @@ public class FroggerApp extends Application {
 
     private Node spawnCar() {
         Rectangle rect = new Rectangle(40, 40, Color.RED);
+        Image underWaterGator = new Image("file:UnderWaterGator.png", 250, 250, false, false);
+        rect.setFill(new ImagePattern(underWaterGator));
+        rect.setTranslateY((int)(Math.random() * 14) * 40);
+
+        root.getChildren().add(rect);
+        return rect;
+    }
+
+    private Node spawnBoat() {
+        Rectangle rect = new Rectangle(40, 40, Color.RED);
+        Image Boat = new Image("file:LillyPadBase.png", 250, 250, false, false);
+        rect.setFill(new ImagePattern(Boat));
         rect.setTranslateY((int)(Math.random() * 14) * 40);
 
         root.getChildren().add(rect);
@@ -65,10 +82,14 @@ public class FroggerApp extends Application {
 
     private void onUpdate() {
         for (Node car : cars)
-            car.setTranslateX(car.getTranslateX() + Math.random() * 10);
-
-        if (Math.random() < 0.075) {
+            car.setTranslateX(car.getTranslateX() + Math.random() * 6);
+        for (Node boat : boats)
+            boat.setTranslateX(boat.getTranslateX() + Math.random()*6);
+        if (Math.random() < 0.070) {
             cars.add(spawnCar());
+        }
+        if (Math.random() < 0.070) {
+            boats.add(spawnBoat());
         }
 
         checkState();
@@ -80,6 +101,12 @@ public class FroggerApp extends Application {
                 frog.setTranslateX(0);
                 frog.setTranslateY(600 - 39);
                 return;
+            }
+        }
+        for (Node boat : boats) {
+            if (boat.getBoundsInParent().intersects(frog.getBoundsInParent())){
+                frog.setTranslateX(boat.getTranslateX());
+                frog.setTranslateY(boat.getTranslateY());
             }
         }
 
