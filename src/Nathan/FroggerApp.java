@@ -21,7 +21,11 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Class that is responsible for creating animation timer, the pane, parent
+ * and child objects.
+ * @author dflan
+ */
 public class FroggerApp extends Application {
 
     private AnimationTimer timer;
@@ -31,7 +35,10 @@ public class FroggerApp extends Application {
     private List<Node> cars = new ArrayList<>();
     private List<Node> boats = new ArrayList<>();
     private Node frog;
-
+/**
+ * creation of the root pane and animation timer.
+ * @return returns the size of the pane
+ */
     private Parent createContent() {
         root = new Pane();
         root.setPrefSize(800, 600);
@@ -50,7 +57,10 @@ public class FroggerApp extends Application {
 
         return root;
     }
-
+/**
+ * Creates the frogger character.
+ * @return returns the rect responsible for frogger character.
+ */
     private Node initFrog() {
         Rectangle rect = new Rectangle(38, 38, Color.GREEN);
         Image Frog = new Image("file:Frog.png", 250, 250, false, false);
@@ -59,7 +69,10 @@ public class FroggerApp extends Application {
 
         return rect;
     }
-
+/**
+ * Spawns an enemy character on the pane.
+ * @return returns the rectangle responsible for the enemy character.
+ */
     private Node spawnCar() {
         Rectangle rect = new Rectangle(40, 40, Color.RED);
         Image underWaterGator = new Image("file:UnderWaterGator.png", 250, 250, false, false);
@@ -69,7 +82,10 @@ public class FroggerApp extends Application {
         root.getChildren().add(rect);
         return rect;
     }
-
+/**
+ * Spawns an enemy character on the pane.
+ * @return returns the rectangle responsible for the enemy character.
+ */
     private Node spawnBoat() {
         Rectangle rect = new Rectangle(40, 40, Color.RED);
         Image Boat = new Image("file:LillyPadBase.png", 250, 250, false, false);
@@ -79,7 +95,9 @@ public class FroggerApp extends Application {
         root.getChildren().add(rect);
         return rect;
     }
-
+/**
+ * Updates the locations of enemies.
+ */
     private void onUpdate() {
         for (Node car : cars)
             car.setTranslateX(car.getTranslateX() + Math.random() * 6);
@@ -94,7 +112,9 @@ public class FroggerApp extends Application {
 
         checkState();
     }
-
+/**
+ * Checks the location of the frogger character and enemy characters.
+ */
     private void checkState() {
         for (Node car : cars) {
             if (car.getBoundsInParent().intersects(frog.getBoundsInParent())) {
@@ -137,6 +157,9 @@ public class FroggerApp extends Application {
     }
 
     @Override
+    /**
+     * Responsible for W,A,S, and D key movement translations.
+     */
     public void start(Stage stage) throws Exception {
         stage.setScene(new Scene(createContent()));
 
@@ -161,7 +184,10 @@ public class FroggerApp extends Application {
 
         stage.show();
     }
-
+/**
+ * launch arguments
+ * @param args - arguments for launch
+ */
     public static void main(String[] args) {
         launch(args);
     }
