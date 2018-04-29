@@ -1,16 +1,21 @@
 package Nathan;
 
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
+
+import java.util.Random;
 
 public class mainMenu extends Application {
 
@@ -26,11 +31,11 @@ public class mainMenu extends Application {
         froggerRenewed.setScene(new Scene(root, 400, 400));
 
         //Generate buttons with labels
-        Image button1 = new Image("Nathan/froggerButtonStart.png");
-        Image button2 = new Image("Nathan/froggerButtonQuit.png");
-        Image button3 = new Image("Nathan/froggerButtonHelp.png");
-        Image button4 = new Image("Nathan/froggerButtonNext.png");
-        Image button5 = new Image("Nathan/froggerButtonBack.png");
+        Image button1 = new Image("Nathan/Images/froggerButtonStart.png");
+        Image button2 = new Image("Nathan/Images/froggerButtonQuit.png");
+        Image button3 = new Image("Nathan/Images/froggerButtonHelp.png");
+        Image button4 = new Image("Nathan/Images/froggerButtonNext.png");
+        Image button5 = new Image("Nathan/Images/froggerButtonBack.png");
         //Start
         startButton = new Button();
         startButton.setGraphic(new ImageView(button1));
@@ -69,7 +74,8 @@ public class mainMenu extends Application {
             System.out.println("Loading the level.");
             //froggerRenewed.setScene(gameLevel.LevelTwoBackground.levelTwoBackground);
             gameOver = new Stage();
-            gameOver.setScene(win);
+            gameOver.setScene(gameLevel);
+            gameOver.setTitle("Level 2 - Traffic Trouble");
             gameOver.show();
         });
 
@@ -108,7 +114,7 @@ public class mainMenu extends Application {
         Canvas mainMenuScreen = new Canvas(800, 800);
 
         GraphicsContext menuBG = mainMenuScreen.getGraphicsContext2D();
-        Image menu = new Image("Nathan/MainMenuBG.png", 800, 800, true, true);
+        Image menu = new Image("Nathan/Images/MainMenuBG.png", 800, 800, true, true);
 
         menuBG.drawImage(menu, 0, 0);
 
@@ -125,7 +131,7 @@ public class mainMenu extends Application {
         Canvas rulesScreen = new Canvas(800, 800);
 
         GraphicsContext helpScreenBG1 = rulesScreen.getGraphicsContext2D();
-        Image rule = new Image("Nathan/Rules.png", 800, 800, true, true);
+        Image rule = new Image("Nathan/Images/Rules.png", 800, 800, true, true);
 
         helpScreenBG1.drawImage(rule, 0, 0);
 
@@ -139,7 +145,7 @@ public class mainMenu extends Application {
         Canvas controlsScreen = new Canvas(800, 800);
 
         GraphicsContext helpScreenBG2 = controlsScreen.getGraphicsContext2D();
-        Image control = new Image("Nathan/Controls.png", 800, 800, true, true);
+        Image control = new Image("Nathan/Images/Controls.png", 800, 800, true, true);
 
         helpScreenBG2.drawImage(control, 0, 0);
 
@@ -153,7 +159,7 @@ public class mainMenu extends Application {
         Canvas winScreenMessage = new Canvas(800, 800);
 
         GraphicsContext winScreenDisplay = winScreenMessage.getGraphicsContext2D();
-        Image winMessage = new Image("Nathan/youwin.png", 800, 800, true, true);
+        Image winMessage = new Image("Nathan/Images/youwin.png", 800, 800, true, true);
 
         winScreenDisplay.drawImage(winMessage, 0, 0);
 
@@ -169,7 +175,7 @@ public class mainMenu extends Application {
         Canvas loseScreenMessage = new Canvas(800, 800);
 
         GraphicsContext loseScreenDisplay = loseScreenMessage.getGraphicsContext2D();
-        Image loseMessage = new Image("Nathan/GameOver.png", 800, 800, true, true);
+        Image loseMessage = new Image("Nathan/Images/GameOver.png", 800, 800, true, true);
 
         loseScreenDisplay.drawImage(loseMessage, 0, 0);
 
@@ -179,9 +185,114 @@ public class mainMenu extends Application {
         lose = new Scene(loseScreen, 800, 800);
         //gameOver.setScene(lose);
 
+        //Set up Level background
+        // set up canvas
+        Group levelTwoBackground = new Group();
+        Canvas levelTwoCanvas = new Canvas(1275,5250);
+        Canvas levelTwoCanvasLayerTwo = new Canvas(1275,5250);
+
+        //add Perks
+        //find random Y start value for perk ((0.0 to 1.0) * 5000 +375)
+        Random randomYValue = new Random();
+        double Yvalue;
+        Yvalue = randomYValue.nextDouble() * /*5000*/ 900 + 375;
+
+        Image perk = Perks.loadPerk();
+
+        ImageView perkView = new ImageView();
+        perkView.setImage(perk);
+        perkView.setX(0.0);
+        perkView.setY(Yvalue);
+
+
+        TranslateTransition movePerk = new TranslateTransition();
+        movePerk.setDuration(Duration.seconds(15.0));
+        movePerk.setNode(perkView);
+        movePerk.setToX(1275);
+        movePerk.setCycleCount(1);
+        movePerk.play();
+
+        // layer one
+        GraphicsContext levelTwoBackgroundGc = levelTwoCanvas.getGraphicsContext2D();
+        drawBackground(levelTwoBackgroundGc);
+
+
+        levelTwoBackground.getChildren().addAll(levelTwoCanvas);
+
+        // layer two
+        GraphicsContext levelTwoBackgroundLayerTwoGc = levelTwoCanvas.getGraphicsContext2D();
+        drawBackgroundLayerTwo(levelTwoBackgroundLayerTwoGc);
+        TopPlayerInfo.setScore(levelTwoBackgroundGc, levelTwoBackgroundGc); // include the Player info
+        levelTwoCanvasLayerTwo.toFront();
+        levelTwoBackground.getChildren().addAll(perkView,levelTwoCanvasLayerTwo);
+
+        gameLevel = new Scene(levelTwoBackground, 1275, 1275);
+
+
         //Set primary stage to main menu
         froggerRenewed.setScene(mainMenu);
         froggerRenewed.show();
+    }
+
+    private void drawBackground(GraphicsContext levelTwoBackgroundGc ){
+
+        // Draw the water
+        levelTwoBackgroundGc.setFill(Color.BLUE);
+        levelTwoBackgroundGc.fillRect(0, 125, 1275, 2250);
+
+        // Draw the grass sections
+        levelTwoBackgroundGc.setFill(Color.GREEN);
+        levelTwoBackgroundGc.fillRect(0, 2501, 1275, 250);
+        levelTwoBackgroundGc.fillRect(0, 5000, 1275, 250);
+
+        //Draw road section
+        levelTwoBackgroundGc.setFill(Color.BLACK);
+        levelTwoBackgroundGc.fillRect(0, 2750, 1275, 2250);
+
+
+    }
+    private void drawBackgroundLayerTwo( GraphicsContext levelTwoBackgroundLayerTwoGc){
+
+        // Draw solid yellow lines
+        levelTwoBackgroundLayerTwoGc.setStroke(Color.YELLOW);
+        levelTwoBackgroundLayerTwoGc.setLineWidth(62.5);
+        levelTwoBackgroundLayerTwoGc.strokeLine(0, 3500, 1275, 3500);
+        levelTwoBackgroundLayerTwoGc.strokeLine(0, 4250, 1275, 4250);
+
+        // Draw solid white lines.
+        levelTwoBackgroundLayerTwoGc.setStroke(Color.WHITESMOKE);
+        levelTwoBackgroundLayerTwoGc.strokeLine(0, 2717.75, 1275, 2717.75);
+        levelTwoBackgroundLayerTwoGc.strokeLine(0, 4967.75, 1275, 4967.75);
+
+        // Draw solid brown line
+        levelTwoBackgroundLayerTwoGc.setStroke(Color.BURLYWOOD);
+        levelTwoBackgroundLayerTwoGc.strokeLine(0, 2467.75, 1275, 2467.75);
+
+        // Draw dashed lines
+        levelTwoBackgroundLayerTwoGc.setStroke(Color.YELLOW);
+        levelTwoBackgroundLayerTwoGc.setLineDashes(62.5);
+        levelTwoBackgroundLayerTwoGc.setLineDashOffset(200);
+        levelTwoBackgroundLayerTwoGc.strokeLine(0, 3125, 1275, 3125);
+        levelTwoBackgroundLayerTwoGc.strokeLine(0, 4625, 1275, 4625);
+
+        //Draw emergency lane markings
+        levelTwoBackgroundLayerTwoGc.setFill(Color.WHITESMOKE);
+        levelTwoBackgroundLayerTwoGc.fillText("EMERGENCY LANE", 200, 3875);
+        levelTwoBackgroundLayerTwoGc.fillText("EMERGENCY LANE", 600, 3875);
+        levelTwoBackgroundLayerTwoGc.fillText("EMERGENCY LANE", 1100, 3875);
+
+        // Place Lilly Pad and Danger Gators
+        Image lillyPad = new Image("Nathan/Images/LillyPadBase.png", 250, 250, false,false);
+        Image underWaterGator = new Image("Nathan/Images/UnderWaterGator.png", 250, 250, false, false);
+
+        //Safe Zone - Win the Level
+        levelTwoBackgroundLayerTwoGc.drawImage(lillyPad,512.5,125);
+
+        //Danger Zone - Lose Life
+        levelTwoBackgroundLayerTwoGc.drawImage(underWaterGator,0,125);
+        levelTwoBackgroundLayerTwoGc.drawImage(underWaterGator,255,125);
+        levelTwoBackgroundLayerTwoGc.drawImage(underWaterGator,774,125);
+        levelTwoBackgroundLayerTwoGc.drawImage(underWaterGator,1025,125);
     }
 
     public static void main(String[] args) {
