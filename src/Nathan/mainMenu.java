@@ -188,8 +188,8 @@ public class mainMenu extends Application {
         //Set up Level background
         // set up canvas
         Group levelTwoBackground = new Group();
-        Canvas levelTwoCanvas = new Canvas(1275,5250);
-        Canvas levelTwoCanvasLayerTwo = new Canvas(1275,5250);
+        Canvas levelTwoCanvas = new Canvas(1000,1000);
+        Canvas levelTwoCanvasLayerTwo = new Canvas(1000,1000);
 
         //add Perks
         //find random Y start value for perk ((0.0 to 1.0) * 5000 +375)
@@ -226,7 +226,7 @@ public class mainMenu extends Application {
         levelTwoCanvasLayerTwo.toFront();
         levelTwoBackground.getChildren().addAll(perkView,levelTwoCanvasLayerTwo);
 
-        gameLevel = new Scene(levelTwoBackground, 1275, 1275);
+        gameLevel = new Scene(levelTwoBackground, 1000, 1000);
 
 
         //Set primary stage to main menu
@@ -238,16 +238,16 @@ public class mainMenu extends Application {
 
         // Draw the water
         levelTwoBackgroundGc.setFill(Color.BLUE);
-        levelTwoBackgroundGc.fillRect(0, 125, 1275, 2250);
+        levelTwoBackgroundGc.fillRect(0, 125, 1000, 2250);
 
         // Draw the grass sections
         levelTwoBackgroundGc.setFill(Color.GREEN);
-        levelTwoBackgroundGc.fillRect(0, 2501, 1275, 250);
-        levelTwoBackgroundGc.fillRect(0, 5000, 1275, 250);
+        levelTwoBackgroundGc.fillRect(0, 2501, 1000, 250);
+        levelTwoBackgroundGc.fillRect(0, 5000, 1000, 250);
 
         //Draw road section
         levelTwoBackgroundGc.setFill(Color.BLACK);
-        levelTwoBackgroundGc.fillRect(0, 2750, 1275, 2250);
+        levelTwoBackgroundGc.fillRect(0, 2750, 1000, 2250);
 
 
     }
