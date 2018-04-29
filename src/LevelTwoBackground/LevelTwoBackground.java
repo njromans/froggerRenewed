@@ -38,7 +38,6 @@ public class LevelTwoBackground extends Application {
         window = primaryStage; // rename for clarity
 
         // set up canvas
-
         Group levelTwoBackground = new Group();
         Canvas levelTwoCanvas = new Canvas(1275,5250);
         Canvas levelTwoCanvasLayerTwo = new Canvas(1275,5250);
@@ -63,8 +62,6 @@ public class LevelTwoBackground extends Application {
         movePerk.setToX(1275);
         movePerk.setCycleCount(1);
         movePerk.play();
-
-
 
         // layer one
         GraphicsContext levelTwoBackgroundGc = levelTwoCanvas.getGraphicsContext2D();
