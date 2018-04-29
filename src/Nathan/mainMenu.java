@@ -75,7 +75,7 @@ public class mainMenu extends Application {
             //froggerRenewed.setScene(gameLevel.LevelTwoBackground.levelTwoBackground);
             gameOver = new Stage();
             gameOver.setScene(gameLevel);
-            gameOver.setTitle("Level 2 - Traffic Trouble");
+            gameOver.setTitle("Frogger Renewed Level");
             gameOver.show();
         });
 
@@ -186,10 +186,31 @@ public class mainMenu extends Application {
         //gameOver.setScene(lose);
 
         //Set up Level background
-        // set up canvas
-        Group levelTwoBackground = new Group();
-        Canvas levelTwoCanvas = new Canvas(1000,1000);
-        Canvas levelTwoCanvasLayerTwo = new Canvas(1000,1000);
+        //Layout lose scene
+        Group levelScreen = new Group();
+        Canvas levelScreenDisplay = new Canvas(800, 800);
+
+        GraphicsContext levelScreenShow = levelScreenDisplay.getGraphicsContext2D();
+        Image levelShow= new Image("Nathan/Images/levelBG.png", 800, 800, true, true);
+
+        levelScreenShow.drawImage(levelShow, 0, 0);
+
+        // Place Lilly Pad and Danger Gators
+        Image lillyPad = new Image("Nathan/Images/LillyPadBase.png", 70, 70, true,true);
+        Image underWaterGator = new Image("Nathan/Images/UnderWaterGator.png", 100, 100, true, true);
+
+        //Safe Zone - Win the Level
+        levelScreenShow.drawImage(lillyPad,125,100);
+
+        //Danger Zone - Lose Life
+        levelScreenShow.drawImage(underWaterGator,0,100);
+        levelScreenShow.drawImage(underWaterGator,50,100);
+        levelScreenShow.drawImage(underWaterGator,175,100);
+        levelScreenShow.drawImage(underWaterGator,225,100);
+
+        levelScreen.getChildren().addAll(levelScreenDisplay);
+
+        gameLevel = new Scene(levelScreen, 800, 800);
 
         //add Perks
         //find random Y start value for perk ((0.0 to 1.0) * 5000 +375)
@@ -212,87 +233,10 @@ public class mainMenu extends Application {
         movePerk.setCycleCount(1);
         movePerk.play();
 
-        // layer one
-        GraphicsContext levelTwoBackgroundGc = levelTwoCanvas.getGraphicsContext2D();
-        drawBackground(levelTwoBackgroundGc);
-
-
-        levelTwoBackground.getChildren().addAll(levelTwoCanvas);
-
-        // layer two
-        GraphicsContext levelTwoBackgroundLayerTwoGc = levelTwoCanvas.getGraphicsContext2D();
-        drawBackgroundLayerTwo(levelTwoBackgroundLayerTwoGc);
-        TopPlayerInfo.setScore(levelTwoBackgroundGc, levelTwoBackgroundGc); // include the Player info
-        levelTwoCanvasLayerTwo.toFront();
-        levelTwoBackground.getChildren().addAll(perkView,levelTwoCanvasLayerTwo);
-
-        gameLevel = new Scene(levelTwoBackground, 1000, 1000);
-
 
         //Set primary stage to main menu
         froggerRenewed.setScene(mainMenu);
         froggerRenewed.show();
-    }
-
-    private void drawBackground(GraphicsContext levelTwoBackgroundGc ){
-
-        // Draw the water
-        levelTwoBackgroundGc.setFill(Color.BLUE);
-        levelTwoBackgroundGc.fillRect(0, 125, 1000, 2250);
-
-        // Draw the grass sections
-        levelTwoBackgroundGc.setFill(Color.GREEN);
-        levelTwoBackgroundGc.fillRect(0, 2501, 1000, 250);
-        levelTwoBackgroundGc.fillRect(0, 5000, 1000, 250);
-
-        //Draw road section
-        levelTwoBackgroundGc.setFill(Color.BLACK);
-        levelTwoBackgroundGc.fillRect(0, 2750, 1000, 2250);
-
-
-    }
-    private void drawBackgroundLayerTwo( GraphicsContext levelTwoBackgroundLayerTwoGc){
-
-        // Draw solid yellow lines
-        levelTwoBackgroundLayerTwoGc.setStroke(Color.YELLOW);
-        levelTwoBackgroundLayerTwoGc.setLineWidth(62.5);
-        levelTwoBackgroundLayerTwoGc.strokeLine(0, 3500, 1275, 3500);
-        levelTwoBackgroundLayerTwoGc.strokeLine(0, 4250, 1275, 4250);
-
-        // Draw solid white lines.
-        levelTwoBackgroundLayerTwoGc.setStroke(Color.WHITESMOKE);
-        levelTwoBackgroundLayerTwoGc.strokeLine(0, 2717.75, 1275, 2717.75);
-        levelTwoBackgroundLayerTwoGc.strokeLine(0, 4967.75, 1275, 4967.75);
-
-        // Draw solid brown line
-        levelTwoBackgroundLayerTwoGc.setStroke(Color.BURLYWOOD);
-        levelTwoBackgroundLayerTwoGc.strokeLine(0, 2467.75, 1275, 2467.75);
-
-        // Draw dashed lines
-        levelTwoBackgroundLayerTwoGc.setStroke(Color.YELLOW);
-        levelTwoBackgroundLayerTwoGc.setLineDashes(62.5);
-        levelTwoBackgroundLayerTwoGc.setLineDashOffset(200);
-        levelTwoBackgroundLayerTwoGc.strokeLine(0, 3125, 1275, 3125);
-        levelTwoBackgroundLayerTwoGc.strokeLine(0, 4625, 1275, 4625);
-
-        //Draw emergency lane markings
-        levelTwoBackgroundLayerTwoGc.setFill(Color.WHITESMOKE);
-        levelTwoBackgroundLayerTwoGc.fillText("EMERGENCY LANE", 200, 3875);
-        levelTwoBackgroundLayerTwoGc.fillText("EMERGENCY LANE", 600, 3875);
-        levelTwoBackgroundLayerTwoGc.fillText("EMERGENCY LANE", 1100, 3875);
-
-        // Place Lilly Pad and Danger Gators
-        Image lillyPad = new Image("Nathan/Images/LillyPadBase.png", 250, 250, false,false);
-        Image underWaterGator = new Image("Nathan/Images/UnderWaterGator.png", 250, 250, false, false);
-
-        //Safe Zone - Win the Level
-        levelTwoBackgroundLayerTwoGc.drawImage(lillyPad,512.5,125);
-
-        //Danger Zone - Lose Life
-        levelTwoBackgroundLayerTwoGc.drawImage(underWaterGator,0,125);
-        levelTwoBackgroundLayerTwoGc.drawImage(underWaterGator,255,125);
-        levelTwoBackgroundLayerTwoGc.drawImage(underWaterGator,774,125);
-        levelTwoBackgroundLayerTwoGc.drawImage(underWaterGator,1025,125);
     }
 
     public static void main(String[] args) {
