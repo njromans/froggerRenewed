@@ -5,7 +5,6 @@ package LevelTwoBackground;/*
  */
 
 
-import Nathan.Perks;
 import Nathan.TopPlayerInfo;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
