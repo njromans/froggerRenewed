@@ -33,7 +33,7 @@ public class mainMenu extends Application {
         Image button3 = new Image("Nathan/Images/froggerButtonHelp.png");
         Image button4 = new Image("Nathan/Images/froggerButtonNext.png");
         Image button5 = new Image("Nathan/Images/froggerButtonBack.png");
-        Image button6 = new Image("Nathan/Images/froggerButtonMini.png");
+        Image button6 = new Image("Nathan/Images/froggerButtonMini.png",100,200,true,true);
         //Start
         startButton = new Button();
         startButton.setGraphic(new ImageView(button1));
@@ -67,8 +67,8 @@ public class mainMenu extends Application {
         //Eng game
         endButton = new Button();
         endButton.setGraphic(new ImageView(button6));
-        endButton.setLayoutX(50);
-        endButton.setLayoutY(705);
+        endButton.setLayoutX(205);
+        endButton.setLayoutY(765);
 
         //Allow for press of button
         startButton.setOnAction(pressEvent -> {
@@ -322,7 +322,14 @@ public class mainMenu extends Application {
 
         Group levelDisplay = new Group();
 
-        levelDisplay.getChildren().addAll(levelBG, levelObstacles);
+        Group levelCharacter = new Group();
+        Canvas levelCharacterDisplay = new Canvas(800, 800);
+
+        GraphicsContext levelCharacterShow = levelObstaclesDisplay.getGraphicsContext2D();
+
+        Image character = loadFrog();
+        levelCharacterShow.drawImage(character,100,700);
+        levelDisplay.getChildren().addAll(levelBG, levelObstacles,levelCharacter);
         levelDisplay.getChildren().add(endButton);
 
         level = new Scene(levelDisplay, 325, 800);
@@ -332,6 +339,10 @@ public class mainMenu extends Application {
         froggerRenewed.show();
         }
 
+    public static Image loadFrog(){
+        Image frog = new Image("Nathan/Images/Frog.png", 50, 50, true, true);
+        return frog;
+    }
     public static Image loadObstacle(){
         Image sidewaysGator = new Image("Nathan/Images/UnderWaterGatorSide.png", 100, 100, true, true);
         Image pirateShip = new Image("Nathan/Images/PirateShip.png", 50, 150, true, true);
