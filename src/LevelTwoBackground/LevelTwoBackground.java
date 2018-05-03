@@ -5,10 +5,9 @@ package LevelTwoBackground;/*
  */
 
 
-import javafx.animation.AnimationTimer;
+import Nathan.TopPlayerInfo;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -16,12 +15,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 
 
@@ -148,7 +144,7 @@ public class LevelTwoBackground extends Application {
         levelTwoBackgroundLayerTwoGc.drawImage(underWaterGator,1025,125);
 
 
-}
+    }
 
     /**
      * @param args the command line arguments
